@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        mainViewModel.users.observe(this, Observer {
+        mainViewModel.user.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     progressBar.visibility = View.GONE
-                    it.data?.let { users -> renderList(users) }
+                    it.data?.let { user -> renderList(user) }
                     recyclerView.visibility = View.VISIBLE
                 }
                 Status.LOADING -> {
@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                     recyclerView.visibility = View.GONE
                 }
                 Status.ERROR -> {
-                    //Handle Error
                     progressBar.visibility = View.GONE
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                 }

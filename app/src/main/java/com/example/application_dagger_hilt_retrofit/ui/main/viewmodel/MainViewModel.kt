@@ -9,13 +9,15 @@ import com.example.application_dagger_hilt_retrofit.utils.Resource
 import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
+
     private val mainRepository: MainRepository,
     private val networkHelper: NetworkHelper
-) : ViewModel() {
 
-    private val _users = MutableLiveData<Resource<List<User>>>()
-    val users: LiveData<Resource<List<User>>>
-        get() = _users
+    ) : ViewModel() {
+
+    private val _user = MutableLiveData<Resource<List<User>>>()
+    val user: LiveData<Resource<List<User>>>
+        get() = _user
 
     init {
         fetchUser()
@@ -23,14 +25,14 @@ class MainViewModel @ViewModelInject constructor(
 
     private fun fetchUser() {
         viewModelScope.launch {
-            _users.postValue(Resource.loading(null))
+            _user.postValue(Resource.loading(null))
             if (networkHelper.isNetworkConnected()) {
                 mainRepository.getUsers().let {
                     if (it.isSuccessful) {
-                        _users.postValue(Resource.success(it.body()))
-                    } else _users.postValue(Resource.error(it.errorBody().toString(), null))
+                        _user.postValue(Resource.success(it.body()))
+                    } else _user.postValue(Resource.error(it.errorBody().toString(), null))
                 }
-            } else _users.postValue(Resource.error("No internet connection", null))
+            } else _user.postValue(Resource.error("No internet connection", null))
         }
     }
 }
