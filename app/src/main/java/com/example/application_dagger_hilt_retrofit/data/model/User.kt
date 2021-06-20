@@ -1,16 +1,16 @@
 package com.example.application_dagger_hilt_retrofit.data.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class User(
-    @Json(name = "id")
-    val id: Int = 0,
-    @Json(name = "first_name")
-    val first_name: String = "",
-    @Json(name = "last_name")
-    val last_name: String = "",
-    @Json (name = "email")
-    val email: String = "",
-    @Json(name = "avatar")
-    val avatar: String = ""
+    @SerializedName("id")
+    val id: Int? = null,
+    @SerializedName("first_name")
+    val first_name: String? = null,
+    @SerializedName("last_name")
+    val last_name: String ? = null,
+    @SerializedName("email")
+    val email: String? = null,
+    @SerializedName("avatar")
+    val avatar: String? = null
 )

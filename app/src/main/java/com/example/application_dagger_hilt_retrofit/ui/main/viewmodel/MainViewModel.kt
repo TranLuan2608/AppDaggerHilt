@@ -29,7 +29,7 @@ class MainViewModel @ViewModelInject constructor(
             if (networkHelper.isNetworkConnected()) {
                 mainRepository.getUsers().let {
                     if (it.isSuccessful) {
-                        _user.postValue(Resource.success(it.body()))
+                        _user.postValue(Resource.success(it.body()?.data))
                     } else _user.postValue(Resource.error(it.errorBody().toString(), null))
                 }
             } else _user.postValue(Resource.error("No internet connection", null))
