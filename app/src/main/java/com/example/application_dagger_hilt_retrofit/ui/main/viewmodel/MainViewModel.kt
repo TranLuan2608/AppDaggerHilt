@@ -13,26 +13,27 @@ class MainViewModel @ViewModelInject constructor(
     private val mainRepository: MainRepository,
     private val networkHelper: NetworkHelper
 
-    ) : ViewModel() {
+    ) : ViewModel()
+    {
 
-    private val _user = MutableLiveData<Resource<List<User>>>()
-    val user: LiveData<Resource<List<User>>>
-        get() = _user
+        private val _user = MutableLiveData<Resource<List<User>>>()
+        val user: LiveData<Resource<List<User>>>
+            get() = _user
 
-    init {
-        fetchUser()
-    }
+        init {
+            fetchUser()
+        }
 
-    private fun fetchUser() {
-        viewModelScope.launch {
-            _user.postValue(Resource.loading(null))
-            if (networkHelper.isNetworkConnected()) {
-                mainRepository.getUsers().let {
-                    if (it.isSuccessful) {
-                        _user.postValue(Resource.success(it.body()?.data))
-                    } else _user.postValue(Resource.error(it.errorBody().toString(), null))
-                }
-            } else _user.postValue(Resource.error("No internet connection", null))
+        private fun fetchUser() {
+            viewModelScope.launch {
+                _user.postValue(Resource.loading(null))
+                if (networkHelper.isNetworkConnected()) {
+                    mainRepository.getUsers().let {
+                        if (it.isSuccessful) {
+                            _user.postValue(Resource.success(it.body()?.data))
+                        } else _user.postValue(Resource.error(it.errorBody().toString(), null))
+                    }
+                } else _user.postValue(Resource.error("No internet connection", null))
+            }
         }
     }
-}

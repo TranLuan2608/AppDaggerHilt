@@ -11,12 +11,13 @@ import kotlinx.android.synthetic.main.item_layout.view.*
 
 class MainAdapter(
     private val user: ArrayList<User>
+
 ) : RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(user: User) {
-            itemView.textViewUserFirstName.text = user.first_name
-            itemView.textViewUserLastName.text = user.last_name
+            val fullName = itemView.textViewUserName
+            fullName.text = user.first_name + " " + user.last_name
             itemView.textViewUserEmail.text = user.email
             Glide.with(itemView.imageViewAvatar.context)
                 .load(user.avatar)

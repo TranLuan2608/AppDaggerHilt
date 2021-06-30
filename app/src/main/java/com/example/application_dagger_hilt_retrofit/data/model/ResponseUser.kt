@@ -13,4 +13,8 @@ data class ResponseUser(
     val total_pages: Int,
     @SerializedName("data")
     val data: List<User>
+
+
+
 )
+

@@ -9,7 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.application_dagger_hilt_retrofit.R
+import com.example.application_dagger_hilt_retrofit.data.api.ApiService
 import com.example.application_dagger_hilt_retrofit.data.model.User
+import com.example.application_dagger_hilt_retrofit.module.ApplicationModule
 import com.example.application_dagger_hilt_retrofit.ui.main.adapter.MainAdapter
 import com.example.application_dagger_hilt_retrofit.ui.main.viewmodel.MainViewModel
 import com.example.application_dagger_hilt_retrofit.utils.Status
@@ -21,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     private val mainViewModel : MainViewModel by viewModels()
     private lateinit var adapter: MainAdapter
+    var page = 1
+    var limit = 6
+    var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         setupObserver()
 
     }
+
+
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -43,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
+
         mainViewModel.user.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {

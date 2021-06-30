@@ -17,7 +17,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @Module
 @InstallIn(ApplicationComponent::class)
 class ApplicationModule {
-    val BASE_URL = "https://reqres.in/"
+    val BASE_URL = "https://reqres.in/api/"
     @Provides
     fun provideBaseUrl() = BASE_URL
     @Provides

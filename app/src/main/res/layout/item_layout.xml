@@ -16,33 +16,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewUserFirstName"
+        android:id="@+id/textViewUserName"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="FirstName" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewUserLastName"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
-        app:layout_constraintTop_toTopOf="@+id/textViewUserFirstName"
-        tools:text="LastName" />
+        tools:text="Name" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewUserEmail"
@@ -50,11 +37,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="108dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imageViewAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUserLastName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserName"
         tools:text="email" />
 
 
