@@ -5,5 +5,5 @@ import retrofit2.Response
 
 interface ApiHelper {
 
-    suspend fun getUser(): Response<ResponseUser>
+    suspend fun getUser(page: Int): Response<ResponseUser>
 }

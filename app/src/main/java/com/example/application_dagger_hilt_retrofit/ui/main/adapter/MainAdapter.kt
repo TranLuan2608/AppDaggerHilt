@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.application_dagger_hilt_retrofit.R
+import com.example.application_dagger_hilt_retrofit.data.model.ResponseUser
 import com.example.application_dagger_hilt_retrofit.data.model.User
 import kotlinx.android.synthetic.main.item_layout.view.*
 
@@ -23,6 +24,7 @@ class MainAdapter(
                 .load(user.avatar)
                 .into(itemView.imageViewAvatar)
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

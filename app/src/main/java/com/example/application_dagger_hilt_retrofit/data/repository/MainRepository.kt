@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val apiHelper: ApiHelper) {
 
-    suspend fun getUsers() =  apiHelper.getUser()
+    suspend fun getUsers(page: Int) =  apiHelper.getUser(page)
 
 
 }
