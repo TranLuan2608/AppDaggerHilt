@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.application_dagger_hilt_retrofit.R
 import com.example.application_dagger_hilt_retrofit.data.fragment.OneFragment
 import com.example.application_dagger_hilt_retrofit.data.fragment.TwoFragment
-import com.example.application_dagger_hilt_retrofit.data.fragment.fragmentAdapter.viewPageAdapter
+import com.example.application_dagger_hilt_retrofit.data.fragment.fragmentAdapter.ViewPageAdapter
 import com.example.application_dagger_hilt_retrofit.data.model.User
 import com.example.application_dagger_hilt_retrofit.ui.main.adapter.MainAdapter
 import com.example.application_dagger_hilt_retrofit.ui.main.viewmodel.MainViewModel
@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       // setupUI()
-       // setupObserver()
+//        setupUI()
+//        setupObserver()
         setUpTabs()
 
 //        layoutManager = LinearLayoutManager(this)
@@ -52,58 +52,58 @@ class MainActivity : AppCompatActivity() {
 //                }
 //            }
 //        })
-    }
+      }
 
     private fun setUpTabs() {
-        val adapter = viewPageAdapter(supportFragmentManager)
+        val adapter = ViewPageAdapter(supportFragmentManager)
         adapter.addFragment(OneFragment(),"TabOne")
         adapter.addFragment(TwoFragment(),"TabTwo")
         viewPage.adapter = adapter
         tabs.setupWithViewPager(viewPage)
     }
 
-    private fun loadMore() {
-        isLoading = true
-    }
+//    private fun loadMore() {
+//        isLoading = true
+//    }
+//
 
-
-    private fun setupUI() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MainAdapter(arrayListOf())
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                recyclerView.context,
-                (recyclerView.layoutManager as LinearLayoutManager).orientation
-            )
-        )
-        recyclerView.adapter = adapter
-    }
-
-    private fun setupObserver() {
-        mainViewModel.user.observe(this, Observer {
-            when (it.status) {
-                Status.SUCCESS -> {
-                    progressBar.visibility = View.GONE
-                    it.data?.let { user -> renderList(user)
-                    }
-                    recyclerView.visibility = View.VISIBLE
-                }
-                Status.LOADING -> {
-                    progressBar.visibility = View.VISIBLE
-                    recyclerView.visibility = View.GONE
-                }
-                Status.ERROR -> {
-                    progressBar.visibility = View.GONE
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                }
-            }
-        })
-    }
-
-    private fun renderList(user: List<User>) {
-        adapter.addData(user)
-        adapter.notifyDataSetChanged()
-
-    }
+//    private fun setupUI() {
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        adapter = MainAdapter(arrayListOf())
+//        recyclerView.addItemDecoration(
+//            DividerItemDecoration(
+//                recyclerView.context,
+//                (recyclerView.layoutManager as LinearLayoutManager).orientation
+//            )
+//        )
+//        recyclerView.adapter = adapter
+//    }
+//
+//    private fun setupObserver() {
+//        mainViewModel.user.observe(this, Observer {
+//            when (it.status) {
+//                Status.SUCCESS -> {
+//                    progressBar.visibility = View.GONE
+//                    it.data?.let { user -> renderList(user)
+//                    }
+//                    recyclerView.visibility = View.VISIBLE
+//                }
+//                Status.LOADING -> {
+//                    progressBar.visibility = View.VISIBLE
+//                    recyclerView.visibility = View.GONE
+//                }
+//                Status.ERROR -> {
+//                    progressBar.visibility = View.GONE
+//                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+//                }
+//            }
+//        })
+//    }
+//
+//    private fun renderList(user: List<User>) {
+//        adapter.addData(user)
+//        adapter.notifyDataSetChanged()
+//
+//    }
 
 }
