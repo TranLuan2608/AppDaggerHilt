@@ -1,5 +1,4 @@
-package com.example.application_dagger_hilt_retrofit.data.fragment.fragmentAdapter
-
+package com.example.application_dagger_hilt_retrofit.ui.main.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter

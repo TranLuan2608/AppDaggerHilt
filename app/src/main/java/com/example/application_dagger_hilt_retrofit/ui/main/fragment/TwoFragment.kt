@@ -1,4 +1,4 @@
-package com.example.application_dagger_hilt_retrofit.data.fragment
+package com.example.application_dagger_hilt_retrofit.ui.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
