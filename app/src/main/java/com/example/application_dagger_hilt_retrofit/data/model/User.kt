@@ -1,8 +1,12 @@
 package com.example.application_dagger_hilt_retrofit.data.model
 
-import com.google.gson.annotations.SerializedName
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+@Entity (tableName = "user_table")
 data class User(
+    @PrimaryKey
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("first_name")

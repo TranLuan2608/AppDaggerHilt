@@ -1,7 +1,6 @@
 package com.example.application_dagger_hilt_retrofit.data.model
 
 import com.google.gson.annotations.SerializedName
-
 data class ResponseUser(
     @SerializedName("page")
     val page: Int,
