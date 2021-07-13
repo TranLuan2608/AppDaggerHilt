@@ -5,13 +5,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 
 @Dao
 abstract class UserDao {
     @Query("SELECT * FROM user_table" )
     abstract fun getAllUser(): Flow<List<User>>
     @Insert (onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertUsers(User: List<User>)
+    abstract suspend fun insertUsers(User: Response<ResponseUser>)
     @Query("DElETE FROM user_table")
     abstract suspend fun deleteAllUser()
 }

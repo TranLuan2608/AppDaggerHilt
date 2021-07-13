@@ -1,4 +1,5 @@
 package com.example.application_dagger_hilt_retrofit.data.repository
+import androidx.room.withTransaction
 import com.example.application_dagger_hilt_retrofit.data.api.ApiHelper
 import com.example.application_dagger_hilt_retrofit.data.model.UserDataBase
 import com.example.application_dagger_hilt_retrofit.utils.networkBoundResource
@@ -19,10 +20,10 @@ class MainRepository @Inject constructor(
             delay(2000)
             apiHelper.getUser(page)
         },
-        saveFetchResult = { restaurants ->
+        saveFetchResult = { data ->
             db.withTransaction {
                 userDao.deleteAllUser()
-                userDao.insertUsers(restaurants)
+                userDao.insertUsers(data)
             }
         }
     )

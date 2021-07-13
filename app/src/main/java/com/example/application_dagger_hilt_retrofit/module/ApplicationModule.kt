@@ -1,8 +1,12 @@
 package com.example.application_dagger_hilt_retrofit.module
+import android.app.Application
+import android.content.Context
+import androidx.room.Room
 import com.example.application_dagger_hilt_retrofit.BuildConfig
 import com.example.application_dagger_hilt_retrofit.data.api.ApiHelper
 import com.example.application_dagger_hilt_retrofit.data.api.ApiHelperImpl
 import com.example.application_dagger_hilt_retrofit.data.api.ApiService
+import com.example.application_dagger_hilt_retrofit.data.model.UserDataBase
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -15,7 +19,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class ApplicationModule {
+class ApplicationModule() {
     val BASE_URL = "https://reqres.in/api/"
     @Provides
     fun provideBaseUrl() = BASE_URL
@@ -48,8 +52,5 @@ class ApplicationModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
-    @Provides
-    @Singleton
-    fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
 
 }
