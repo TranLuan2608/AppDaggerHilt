@@ -1,6 +1,7 @@
 package com.example.application_dagger_hilt_retrofit.ui.main.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -40,6 +41,7 @@ class CallApiActivity : AppCompatActivity() {
                 if (!isLoading) {
                     if (layoutManager.findLastCompletelyVisibleItemPosition() == (adapter.itemCount-1)) {
                         if (recyclerView.canScrollVertically(-1)) {
+                            Log.d("luan 1","luan" )
                             mainViewModel.fetchUser(2)
                             loadMore()
                         }

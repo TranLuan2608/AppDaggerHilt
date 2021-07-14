@@ -12,7 +12,7 @@ abstract class UserDao {
     @Query("SELECT * FROM user_table" )
     abstract fun getAllUser(): Flow<List<User>>
     @Insert (onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertUsers(User: List<User>)
+    abstract suspend fun insertUsers(user: List<User>)
     @Query("DElETE FROM user_table")
     abstract suspend fun deleteAllUser()
 }
