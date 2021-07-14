@@ -14,12 +14,20 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import javax.inject.Singleton
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-@Module
-@InstallIn(ApplicationComponent::class)
-class ApplicationModule() {
+@InstallIn(SingletonComponent::class)
+@Module(includes = [UserDataBaseModule::class])
+
+class ApplicationModule {
+    @Provides
+    @Singleton
+    fun providerContext(@ApplicationContext context: Context): Context {
+        return context
+    }
+
     val BASE_URL = "https://reqres.in/api/"
     @Provides
     fun provideBaseUrl() = BASE_URL
@@ -52,5 +60,7 @@ class ApplicationModule() {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
-
+    @Provides
+    @Singleton
+    fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
 }

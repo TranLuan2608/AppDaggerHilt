@@ -6,9 +6,10 @@ import com.example.application_dagger_hilt_retrofit.data.model.UserDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@InstallIn(Singleton::class)
+@InstallIn(SingletonComponent::class)
 @Module
 class UserDataBaseModule {
     @Provides

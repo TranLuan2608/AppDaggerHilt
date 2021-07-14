@@ -23,7 +23,7 @@ class MainRepository @Inject constructor(
         saveFetchResult = { data ->
             db.withTransaction {
                 userDao.deleteAllUser()
-                userDao.insertUsers(data)
+                userDao.insertUsers(emptyList())
             }
         }
     )
