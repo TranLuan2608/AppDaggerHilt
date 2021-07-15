@@ -25,21 +25,53 @@ class MainViewModel @ViewModelInject constructor(
         }
 
         fun fetchUser(page: Int) {
+            //run code phia trong voi mot luong la viewModelScope
             viewModelScope.launch {
                 _user.postValue(Resource.loading(null))
+                //kiểm tra internet
                 if (networkHelper.isNetworkConnected()) {
                     Log.d("luan 2","luan" )
+                    //lay du lieu tu api
                     mainRepository.getUsers(page).let {
+                        //kiem tra viec lay du lieu
                         if (it.isSuccessful) {
+                            //tra du lieu ve
                             _user.postValue(Resource.success(it.body()?.data))
                         } else _user.postValue(Resource.error(it.errorBody().toString(), null))
                     }
                 } else {
+                    //lay du lieu tu database
                         mainRepository.getUsersLocal().collect {
                             Log.d("luan 8","luan" + it.size)
+                            //tra du lieu ve
                             _user.postValue(Resource.success(it))
                         }
                 }
+            }
+        }
+
+        fun fetchNameUser(userFirstName: String, userLastName: String){
+            viewModelScope.launch {
+                if(userFirstName.equals(userLastName,true))
+                {
+                    //lay du lieu tu database
+                    mainRepository.getUserByName(userFirstName,userLastName).collect { users ->
+                        Log.d("luan 9","luan$users")
+                        //tra du lieu ve
+                        _user.postValue(Resource.success(users))
+
+                    }
+                }else {
+                    //lay du lieu tu database
+                    mainRepository.getUserByFullName(userFirstName, userLastName).collect { users ->
+                        Log.d("luan 9", "luan$users")
+                        //tra du lieu ve
+                        _user.postValue(Resource.success(users))
+
+                    }
+                }
+
+
             }
         }
     }

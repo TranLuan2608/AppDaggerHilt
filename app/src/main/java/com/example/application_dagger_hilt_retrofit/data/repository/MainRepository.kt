@@ -27,6 +27,17 @@ class MainRepository @Inject constructor(
         val data = userDao.getAllUser()
         return data
     }
+
+    fun getUserByName(userFirstName: String, userLastName: String): Flow<List<User>>
+    {
+        val userName = userDao.getUserByName(userFirstName,userLastName)
+        return userName
+    }
+    fun getUserByFullName(userFirstName: String, userLastName: String): Flow<List<User>>
+    {
+        val userFullName = userDao.getUserByFullName(userFirstName,userLastName)
+        return userFullName
+    }
 //        networkBoundResource(
 //
 //        query = {

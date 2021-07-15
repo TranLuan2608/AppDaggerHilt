@@ -3,6 +3,7 @@ package com.example.application_dagger_hilt_retrofit.ui.main.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.application_dagger_hilt_retrofit.R
@@ -16,6 +17,7 @@ class MainAdapter(
 ) : RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         fun bind(user: User) {
             val fullName = itemView.textViewUserName
             fullName.text = user.first_name + " " + user.last_name
@@ -24,6 +26,7 @@ class MainAdapter(
                 .load(user.avatar)
                 .into(itemView.imageViewAvatar)
         }
+
 
     }
 
@@ -41,6 +44,7 @@ class MainAdapter(
         holder.bind(user[position])
 
     fun addData(list: List<User>) {
+        user.clear()
         user.addAll(list)
     }
 }

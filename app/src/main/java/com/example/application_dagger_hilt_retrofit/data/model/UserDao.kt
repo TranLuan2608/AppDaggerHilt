@@ -15,4 +15,10 @@ abstract class UserDao {
     abstract suspend fun insertUsers(user: List<User>)
     @Query("DElETE FROM user_table")
     abstract suspend fun deleteAllUser()
+    @Query("SELECT * FROM user_table WHERE first_name LIKE :userFirstName Or last_name LIKE :userLastName" )
+    abstract fun getUserByName(userFirstName: String, userLastName: String): Flow<List<User>>
+    @Query("SELECT * FROM user_table WHERE first_name LIKE :userFirstName AND last_name LIKE :userLastName" )
+    abstract fun getUserByFullName(userFirstName: String, userLastName: String): Flow<List<User>>
+
+
 }

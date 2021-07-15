@@ -3,6 +3,7 @@ package com.example.application_dagger_hilt_retrofit.ui.main.view
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -52,6 +53,8 @@ class CallApiActivity : AppCompatActivity() {
     }
 
 
+
+
     private fun loadMore() {
         isLoading = true
     }
@@ -67,6 +70,32 @@ class CallApiActivity : AppCompatActivity() {
             )
         )
         recyclerView.adapter = adapter
+        //What i want todo
+        //nhan nut lay ten user
+        btnGetNameUser.setOnClickListener {
+            //Lay ten user
+            var nameUser: String = searchUser.text.toString()
+            var arr:List<String> = nameUser.split(" ")
+
+            var firstNameUser: String
+            var lastNameUser: String
+
+            if(arr.size == 1)
+            {
+                firstNameUser = arr.get(0)
+                lastNameUser = firstNameUser
+            }else{
+                firstNameUser = arr.get(0)
+                lastNameUser = arr.get(1)
+            }
+            //liveCircle Activity
+            //Lay user tu dataBase
+            // CallApiActivity > MainViewModel > MainRepository > UserDataBase
+            mainViewModel.fetchNameUser(firstNameUser,lastNameUser)
+
+        }
+
+
     }
 
     private fun setupObserver() {
@@ -95,5 +124,7 @@ class CallApiActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
 
     }
+
+
 
 }
