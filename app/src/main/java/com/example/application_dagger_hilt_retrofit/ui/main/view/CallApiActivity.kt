@@ -82,19 +82,20 @@ class CallApiActivity : AppCompatActivity() {
 
             if(arr.size == 1)
             {
-                firstNameUser = arr.get(0)
+                firstNameUser = arr[0]
                 lastNameUser = firstNameUser
             }else{
-                firstNameUser = arr.get(0)
-                lastNameUser = arr.get(1)
+                firstNameUser = arr[0]
+                lastNameUser = arr[1]
             }
             //liveCircle Activity
             //Lay user tu dataBase
             // CallApiActivity > MainViewModel > MainRepository > UserDataBase
             mainViewModel.fetchNameUser(firstNameUser,lastNameUser)
-
+            mainViewModel.user.observe(this, Observer {
+                it.data?.let { user -> clearAndRenderList(user) }
+            })
         }
-
 
     }
 
@@ -121,6 +122,11 @@ class CallApiActivity : AppCompatActivity() {
 
     private fun renderList(user: List<User>) {
         adapter.addData(user)
+        adapter.notifyDataSetChanged()
+
+    }
+    private fun clearAndRenderList(user: List<User>) {
+        adapter.clearAndData(user)
         adapter.notifyDataSetChanged()
 
     }

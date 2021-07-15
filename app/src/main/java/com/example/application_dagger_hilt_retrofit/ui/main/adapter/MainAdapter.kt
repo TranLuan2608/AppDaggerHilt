@@ -44,6 +44,9 @@ class MainAdapter(
         holder.bind(user[position])
 
     fun addData(list: List<User>) {
+        user.addAll(list)
+    }
+    fun clearAndData(list: List<User>) {
         user.clear()
         user.addAll(list)
     }
