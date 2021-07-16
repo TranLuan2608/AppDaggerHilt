@@ -42,7 +42,6 @@ class CallApiActivity : AppCompatActivity() {
                 if (!isLoading) {
                     if (layoutManager.findLastCompletelyVisibleItemPosition() == (adapter.itemCount-1)) {
                         if (recyclerView.canScrollVertically(-1)) {
-                            Log.d("luan 1","luan" )
                             mainViewModel.fetchUser(2)
                             loadMore()
                         }

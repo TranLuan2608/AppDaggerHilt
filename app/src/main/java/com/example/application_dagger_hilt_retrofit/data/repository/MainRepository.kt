@@ -19,7 +19,6 @@ class MainRepository @Inject constructor(
 
     suspend fun getUsers(page: Int): Response<ResponseUser> {
         val data = apiHelper.getUser(page)
-        Log.d("luan 7","luan" + data.body()?.data)
         data.body()?.data?.let { userDao.insertUsers(it) }
         return data
     }

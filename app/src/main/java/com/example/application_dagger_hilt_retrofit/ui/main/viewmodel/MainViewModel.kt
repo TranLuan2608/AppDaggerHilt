@@ -20,7 +20,6 @@ class MainViewModel @ViewModelInject constructor(
             get() = _user
 
         init {
-            Log.d("luan 3","luan")
             fetchUser(1)
         }
 
@@ -30,7 +29,6 @@ class MainViewModel @ViewModelInject constructor(
                 _user.postValue(Resource.loading(null))
                 //kiểm tra internet
                 if (networkHelper.isNetworkConnected()) {
-                    Log.d("luan 2","luan" )
                     //lay du lieu tu api
                     mainRepository.getUsers(page).let {
                         //kiem tra viec lay du lieu
@@ -42,7 +40,6 @@ class MainViewModel @ViewModelInject constructor(
                 } else {
                     //lay du lieu tu database
                     mainRepository.getUsersLocal().collect {
-                        Log.d("luan 8","luan" + it.size)
                         //tra du lieu ve
                         _user.postValue(Resource.success(it))
                     }
@@ -57,7 +54,6 @@ class MainViewModel @ViewModelInject constructor(
                 {
                     //lay du lieu tu database
                     mainRepository.getUserByName(userFirstName,userLastName).collect { users ->
-                        Log.d("luan 9","luan$users")
                         //tra du lieu ve
                         _user.postValue(Resource.success(users))
 
@@ -65,7 +61,6 @@ class MainViewModel @ViewModelInject constructor(
                 }else {
                     //lay du lieu tu database
                     mainRepository.getUserByFullName(userFirstName, userLastName).collect { users ->
-                        Log.d("luan 9", "luan$users")
                         //tra du lieu ve
                         _user.postValue(Resource.success(users))
 
