@@ -1,12 +1,10 @@
 package com.example.application_dagger_hilt_retrofit.data.repository
-import android.util.Log
 import com.example.application_dagger_hilt_retrofit.data.api.ApiHelper
 import com.example.application_dagger_hilt_retrofit.data.model.ResponseUser
 import com.example.application_dagger_hilt_retrofit.data.model.User
 import com.example.application_dagger_hilt_retrofit.data.model.UserDataBase
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.count
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -23,25 +21,21 @@ class MainRepository @Inject constructor(
         return data
     }
 
-    suspend fun addUser(addDataUser: User)
-    {
-         userDao.insertUser(addDataUser)
+    suspend fun addUser(addDataUser: User) = flow{
+        userDao.insertUser(addDataUser)
+        emit(true)
     }
+
 
     fun getUsersLocal(): Flow<List<User>> {
-        val data = userDao.getAllUser()
-        return data
+        return userDao.getAllUser()
     }
 
-    fun getUserByName(userFirstName: String, userLastName: String): Flow<List<User>>
-    {
-        val userName = userDao.getUserByName(userFirstName,userLastName)
-        return userName
+    fun getUserByName(userFirstName: String, userLastName: String): Flow<List<User>> {
+        return userDao.getUserByName(userFirstName, userLastName)
     }
-    fun getUserByFullName(userFirstName: String, userLastName: String): Flow<List<User>>
-    {
-        val userFullName = userDao.getUserByFullName(userFirstName,userLastName)
-        return userFullName
+    fun getUserByFullName(userFirstName: String, userLastName: String): Flow<List<User>> {
+        return userDao.getUserByFullName(userFirstName, userLastName)
     }
 //        networkBoundResource(
 //

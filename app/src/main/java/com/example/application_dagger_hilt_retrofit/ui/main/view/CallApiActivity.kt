@@ -91,6 +91,7 @@ class CallApiActivity : AppCompatActivity() {
             //Lay user tu dataBase
             // CallApiActivity > MainViewModel > MainRepository > UserDataBase
             mainViewModel.fetchNameUser(firstNameUser,lastNameUser)
+            //chổ này là chổ trả data đây là lần thứ 4 tui bị ngu chổ này
             mainViewModel.user.observe(this, Observer {
                 it.data?.let { user -> clearAndRenderList(user) }
             })
