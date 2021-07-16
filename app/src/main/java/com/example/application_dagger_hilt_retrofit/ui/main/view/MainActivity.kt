@@ -21,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         btnTestViewPager.setOnClickListener {
             startActivity(Intent(this, ViewPageActivity::class.java))
         }
+        btnAddUser.setOnClickListener {
+            startActivity(Intent(this,AddUserActivity::class.java))
+        }
 
 
     }

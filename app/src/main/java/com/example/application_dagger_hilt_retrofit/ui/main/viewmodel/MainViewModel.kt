@@ -41,14 +41,15 @@ class MainViewModel @ViewModelInject constructor(
                     }
                 } else {
                     //lay du lieu tu database
-                        mainRepository.getUsersLocal().collect {
-                            Log.d("luan 8","luan" + it.size)
-                            //tra du lieu ve
-                            _user.postValue(Resource.success(it))
-                        }
+                    mainRepository.getUsersLocal().collect {
+                        Log.d("luan 8","luan" + it.size)
+                        //tra du lieu ve
+                        _user.postValue(Resource.success(it))
+                    }
                 }
             }
         }
+
 
         fun fetchNameUser(userFirstName: String, userLastName: String){
             viewModelScope.launch {

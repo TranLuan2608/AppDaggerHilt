@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".ui.main.view.CallApiActivity" />
         <activity android:name=".ui.main.view.ViewPageActivity" />
+        <activity android:name=".ui.main.view.AddUserActivity" />
     </application>
 
 </manifest>

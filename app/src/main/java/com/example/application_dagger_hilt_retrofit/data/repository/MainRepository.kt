@@ -5,6 +5,7 @@ import com.example.application_dagger_hilt_retrofit.data.model.ResponseUser
 import com.example.application_dagger_hilt_retrofit.data.model.User
 import com.example.application_dagger_hilt_retrofit.data.model.UserDataBase
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.flowOf
 import retrofit2.Response
 import javax.inject.Inject
@@ -21,6 +22,11 @@ class MainRepository @Inject constructor(
         Log.d("luan 7","luan" + data.body()?.data)
         data.body()?.data?.let { userDao.insertUsers(it) }
         return data
+    }
+
+    suspend fun addUser(addDataUser: User)
+    {
+         userDao.insertUser(addDataUser)
     }
 
     fun getUsersLocal(): Flow<List<User>> {

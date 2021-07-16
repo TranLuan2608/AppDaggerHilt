@@ -19,6 +19,9 @@ abstract class UserDao {
     abstract fun getUserByName(userFirstName: String, userLastName: String): Flow<List<User>>
     @Query("SELECT * FROM user_table WHERE first_name LIKE :userFirstName AND last_name LIKE :userLastName" )
     abstract fun getUserByFullName(userFirstName: String, userLastName: String): Flow<List<User>>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    //suspend fun co kha nang start, pause, resume giup thread khong gap tinh trang blocking
+    abstract suspend fun insertUser(user: User)
 
 
 }
