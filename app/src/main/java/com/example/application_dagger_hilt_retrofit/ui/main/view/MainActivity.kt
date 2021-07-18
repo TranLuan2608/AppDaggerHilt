@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.application_dagger_hilt_retrofit.R
+import com.example.application_dagger_hilt_retrofit.data.model.Person
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -105,15 +106,47 @@ class MainActivity : AppCompatActivity() {
 //
 //        }
 
+//
+//        var ten = SetName()
+//        var tenB= ten.fullName("tran","luan")
+//        var tenA = ten.firstName
+//        Log.d("TagB","Day la Name ten A $tenA")
+//        Log.d("TagB","Day la Name $tenB")
 
-        var ten = SetName()
-        var tenB= ten.fullName("tran","luan")
-        var tenA = ten.firstName
-        Log.d("TagB","Day la Name ten A $tenA")
-        Log.d("TagB","Day la Name $tenB")
 
+
+//        var ten: String? = null
+//        ten = "noNull"
+//        Log.d("TagB","kiemtra $ten")
+//        ten?.let {
+//            Log.d("TagB","kiemtra co null  $ten")
+//        }
+
+//        var tutorial = "This is Kotlin Tutorial"
+//        Log.d("TagB","kiemtra $tutorial")
+//        tutorial = run {
+//            val tutorial = "This is run function"
+//            val ten = "Luan"
+//            ten
+//        }
+//        Log.d("TagB","kiemtra $tutorial")
+
+//
+//        var person = PersonB().apply {
+//            this.name = "Luan"
+//            this.tutorial = "asd"
+//        }
+//        Log.d("TagB","kiemtra apply ${person.name} ${person.tutorial}")
+
+
+//        val w = Window()
+//        with(w){
+//            setWidth = 10
+//            setHeight = 10
+//            setBackground = "Blue"
+//        }
+//        Log.d("TagB","kiemtra with ${w.setHeight} ${w.setBackground} ${w.setWidth}")
     }
-
 }
 
 //   interface NhanVien {
@@ -150,22 +183,37 @@ class MainActivity : AppCompatActivity() {
 //}
 
 
-abstract class Name  {
-    var firstName: String = ""
-    var lastName: String = ""
-    abstract fun fullName(first: String, last: String): String
-}
+//abstract class Name  {
+//    var firstName: String = ""
+//    var lastName: String = ""
+//    abstract fun fullName(first: String, last: String): String
+//}
+//
+//class SetName: Name()
+//{
+//    override fun fullName(first: String, last: String): String{
+//        firstName = first
+//        lastName = last
+//        return firstName + " " + lastName
+//    }
+//
+//
+//}
 
-class SetName: Name()
+data class PersonB(var name: String? = null, var tutorial : String? = null)
+
+class Window
 {
-    override fun fullName(first: String, last: String): String{
-        firstName = first
-        lastName = last
-        return firstName + " " + lastName
-    }
-
-
+    var setWidth = 0
+    var setHeight = 0
+    var setBackground = ""
 }
+
+
+
+// doc ve live data
+//coroutine
+//load data tu reponsitory ve view model roi dua len view
 
 
 

@@ -24,10 +24,11 @@ class Rat(typeFood: String,timeToSleep: String,whereSleep: String):Animal(typeFo
 
  class Person(
     var name: String,
+    var age: Int,
     var gender: String = "Male",
     var country: String = "VN",
     var address: String? = null
-)
+ )
 
 //cach khoi tao object
 //cach dung
