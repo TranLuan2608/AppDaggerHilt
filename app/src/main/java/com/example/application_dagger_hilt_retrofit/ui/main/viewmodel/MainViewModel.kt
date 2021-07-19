@@ -18,6 +18,7 @@ class MainViewModel @ViewModelInject constructor(
         private val _user = MutableLiveData<Resource<List<User>>>()
         val user: LiveData<Resource<List<User>>>
             get() = _user
+        val statusDelete = MutableLiveData<Boolean>()
 
         init {
             fetchUser(1)
@@ -67,6 +68,27 @@ class MainViewModel @ViewModelInject constructor(
                     }
                 }
 
+
+            }
+        }
+
+
+
+        fun deleteDataUser(user: User)
+        {
+            viewModelScope.launch {
+                try {
+                    mainRepository.deleteUser(user).collect {
+                        statusDelete.postValue(true)
+                        mainRepository.getUsersLocal().collect {
+                            //tra du lieu ve
+                            _user.postValue(Resource.success(it))
+                        }
+
+                    }
+                } catch (e: Throwable) {
+                    statusDelete.postValue(false)
+                }
 
             }
         }

@@ -26,8 +26,8 @@ class MainRepository @Inject constructor(
         emit(true)
     }
 
-    fun deleteUser(userFirstName: String, userLastName: String, userEmail: String) = flow {
-        userDao.deleteUser(userFirstName,userLastName,userEmail)
+    fun deleteUser(user: User) = flow {
+        userDao.deleteUser(user)
         emit(true)
 
     }

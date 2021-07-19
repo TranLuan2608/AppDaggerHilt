@@ -12,8 +12,8 @@ import com.example.application_dagger_hilt_retrofit.data.model.User
 import kotlinx.android.synthetic.main.item_layout.view.*
 
 class MainAdapter(
-    private val user: ArrayList<User>
-
+    private val user: ArrayList<User>,
+    private val onClick: ItemListener? = null
 ) : RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,10 +38,15 @@ class MainAdapter(
             )
         )
 
+
     override fun getItemCount(): Int = user.size
 
-    override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            onClick?.onClick(user[position])
+        }
         holder.bind(user[position])
+    }
 
     fun addData(list: List<User>) {
         user.addAll(list)
@@ -50,4 +55,10 @@ class MainAdapter(
         user.clear()
         user.addAll(list)
     }
+
+
+
 }
+
+
+

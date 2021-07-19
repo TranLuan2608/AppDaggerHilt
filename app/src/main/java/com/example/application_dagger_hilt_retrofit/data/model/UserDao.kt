@@ -1,9 +1,6 @@
 package com.example.application_dagger_hilt_retrofit.data.model
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
@@ -22,6 +19,6 @@ abstract class UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     //suspend fun co kha nang start, pause, resume giup thread khong gap tinh trang blocking
     abstract suspend fun insertUser(user: User)
-    @Query("SELECT * FROM user_table WHERE first_name LIKE :userFirstName AND last_name LIKE :userLastName AND email LIKE :userEmail")
-    abstract fun deleteUser(userFirstName: String, userLastName: String, userEmail: String): User
+    @Delete
+    abstract suspend fun deleteUser(user: User)
 }

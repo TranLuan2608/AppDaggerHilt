@@ -9,4 +9,5 @@ class DemoViewModel: ViewModel() {
     val currentName: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
+
 }

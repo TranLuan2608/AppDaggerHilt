@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.application_dagger_hilt_retrofit.R
 import com.example.application_dagger_hilt_retrofit.data.model.User
+import com.example.application_dagger_hilt_retrofit.ui.main.adapter.ItemListener
 import com.example.application_dagger_hilt_retrofit.ui.main.adapter.MainAdapter
 import com.example.application_dagger_hilt_retrofit.ui.main.viewmodel.MainViewModel
 import com.example.application_dagger_hilt_retrofit.utils.Status
@@ -49,6 +50,8 @@ class CallApiActivity : AppCompatActivity() {
                 }
             }
         })
+
+
     }
 
 
@@ -61,7 +64,23 @@ class CallApiActivity : AppCompatActivity() {
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MainAdapter(arrayListOf())
+        adapter = MainAdapter(arrayListOf(),onClick = object :ItemListener{
+            override fun onClick(itemUser: User) {
+                Log.d("TagC","user ${itemUser.first_name} ${itemUser.id}")
+                mainViewModel.deleteDataUser(itemUser)
+
+            }
+        })
+        mainViewModel.user.observe(this, Observer {
+            it.data?.let { user -> clearAndRenderList(user) }
+        })
+        mainViewModel.statusDelete.observe(this, Observer {
+            if(it==true){
+                Toast.makeText(this,"Delete thanh cong",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"Delete that bai",Toast.LENGTH_LONG).show()
+            }
+        })
         recyclerView.addItemDecoration(
             DividerItemDecoration(
                 recyclerView.context,
@@ -130,6 +149,10 @@ class CallApiActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
 
     }
+
+
+
+
 
 
 
