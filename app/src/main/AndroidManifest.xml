@@ -23,6 +23,8 @@
         <activity android:name=".ui.main.view.CallApiActivity" />
         <activity android:name=".ui.main.view.ViewPageActivity" />
         <activity android:name=".ui.main.view.AddUserActivity" />
+        <activity android:name=".ui.main.view.DemoActivity" />
+
     </application>
 
 </manifest>

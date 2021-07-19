@@ -28,33 +28,38 @@ class AddUserActivity : AppCompatActivity() {
             var dataAvatar = edtAvatarUser.text.toString()
             var firstNameUser = ""
             var lastNameUser = ""
-            if(dataAvatar==""||dataNameUse==""||dataEmail==""){
+            if(dataAvatar==""||dataNameUse==""||dataEmail=="")
+            {
                 Toast.makeText(this,"Điền thông tin User",Toast.LENGTH_LONG).show()
-            }else {
+            }else
+            {
 
-                var arr: List<String> = dataNameUse.split(" ")
-                if(arr.size==1){
-                     firstNameUser = arr[0]
-                }else if(arr.size==2){
-                     firstNameUser = arr[0]
-                     lastNameUser = arr[1].capitalize()
-                }else{
-                    firstNameUser = arr[0]
-                    for(i in 1 until (arr.size))
+                    var arr: List<String> = dataNameUse.split(" ")
+
+                    if(arr.size==1)
+                    {
+                         firstNameUser = arr[0]
+                    }else if(arr.size==2){
+                         firstNameUser = arr[0]
+                         lastNameUser = arr[1].capitalize()
+                    }else
                     {
                         firstNameUser = arr[0]
-                        lastNameUser = lastNameUser.plus(" " + arr[i].capitalize())
+                        for(i in 1 until (arr.size))
+                        {
+                            firstNameUser = arr[0]
+                            lastNameUser = lastNameUser.plus(" " + arr[i].capitalize())
+                        }
                     }
-                }
-                var id: Int = addUserViewModel.countUsers()
-                var listAddDataUser = User(id, firstNameUser.capitalize(), lastNameUser, dataEmail, dataAvatar)
-                addUserViewModel.addDataUser(listAddDataUser)
+                    var id: Int = addUserViewModel.countUsers()
+                    var listAddDataUser = User(id, firstNameUser.capitalize(), lastNameUser, dataEmail, dataAvatar)
+                    addUserViewModel.addDataUser(listAddDataUser)
 
             }
 
         }
 
-        addUserViewModel.status.observe(this, Observer {
+        addUserViewModel.statusAdd.observe(this, Observer {
             if(it==true){
                 Toast.makeText(this,"Add thanh cong",Toast.LENGTH_LONG).show()
             }else{
@@ -62,6 +67,49 @@ class AddUserActivity : AppCompatActivity() {
             }
 
         })
+
+
+        btnDeleteDataUser.setOnClickListener {
+            var dataNameUse = edtNameUser.text.toString()
+            var dataEmail  = edtEmailUser.text.toString()
+            var firstNameUser = ""
+            var lastNameUser = ""
+            if(dataNameUse==""||dataEmail=="")
+            {
+                Toast.makeText(this,"Điền thông tin User",Toast.LENGTH_LONG).show()
+            }else
+            {
+
+                var arr: List<String> = dataNameUse.split(" ")
+                if(arr.size==1)
+                {
+                    firstNameUser = arr[0]
+                }else if(arr.size==2){
+                    firstNameUser = arr[0]
+                    lastNameUser = arr[1].capitalize()
+                }else
+                {
+                    firstNameUser = arr[0]
+                    for (i in 1 until (arr.size))
+                    {
+                        firstNameUser = arr[0]
+                        lastNameUser = lastNameUser.plus(" " + arr[i].capitalize())
+                    }
+                }
+            }
+
+            addUserViewModel.deleteDataUser(firstNameUser.capitalize(),lastNameUser,dataEmail)
+        }
+        addUserViewModel.statusDelete.observe(this, Observer {
+            if(it==true){
+                Toast.makeText(this,"Delete user thanh cong",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"Delete user that bai",Toast.LENGTH_LONG).show()
+            }
+
+        })
+
+
     }
 }
 

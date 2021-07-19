@@ -15,7 +15,9 @@ class AddUserViewModel @ViewModelInject constructor(
     private val mainRepository : MainRepository
 ) : ViewModel() {
     private var count: Int = 0
-    val status = MutableLiveData<Boolean>()
+    val statusAdd = MutableLiveData<Boolean>()
+    val statusDelete = MutableLiveData<Boolean>()
+
     fun countUsers(): Int
     {
         viewModelScope.launch {
@@ -32,10 +34,23 @@ class AddUserViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             try {
                 mainRepository.addUser(dataUser).collect {
-                    status.postValue(true)
+                    statusAdd.postValue(true)
                 }
             } catch (e: Throwable) {
-                status.postValue(false)
+                statusAdd.postValue(false)
+            }
+
+        }
+    }
+    fun deleteDataUser(userFirstName: String, userLastName: String, userEmail: String)
+    {
+        viewModelScope.launch {
+            try {
+                mainRepository.deleteUser(userFirstName,userLastName,userEmail).collect {
+                    statusDelete.postValue(true)
+                }
+            } catch (e: Throwable) {
+                statusDelete.postValue(false)
             }
 
         }

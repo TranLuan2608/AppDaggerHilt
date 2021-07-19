@@ -22,6 +22,6 @@ abstract class UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     //suspend fun co kha nang start, pause, resume giup thread khong gap tinh trang blocking
     abstract suspend fun insertUser(user: User)
-
-
+    @Query("SELECT * FROM user_table WHERE first_name LIKE :userFirstName AND last_name LIKE :userLastName AND email LIKE :userEmail")
+    abstract fun deleteUser(userFirstName: String, userLastName: String, userEmail: String): User
 }

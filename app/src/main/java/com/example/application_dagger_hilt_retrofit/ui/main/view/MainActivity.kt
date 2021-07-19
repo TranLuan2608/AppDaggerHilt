@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         btnAddUser.setOnClickListener {
             startActivity(Intent(this,AddUserActivity::class.java))
         }
+        btnDemo.setOnClickListener {
+            startActivity(Intent(this,DemoActivity::class.java))
+        }
 //        var animal = Animal("anthit","ngu ngay")
 //        var dog = Dog("gau gau","an thit","ngu dem")
 //        Log.d("TagA","ThuocTinh ${animal.eat} ${animal.sleep}")
@@ -146,8 +149,15 @@ class MainActivity : AppCompatActivity() {
 //            setBackground = "Blue"
 //        }
 //        Log.d("TagB","kiemtra with ${w.setHeight} ${w.setBackground} ${w.setWidth}")
+
+
+
+
+
     }
 }
+
+
 
 //   interface NhanVien {
 //       fun chucVu()
@@ -200,14 +210,14 @@ class MainActivity : AppCompatActivity() {
 //
 //}
 
-data class PersonB(var name: String? = null, var tutorial : String? = null)
-
-class Window
-{
-    var setWidth = 0
-    var setHeight = 0
-    var setBackground = ""
-}
+//data class PersonB(var name: String? = null, var tutorial : String? = null)
+//
+//class Window
+//{
+//    var setWidth = 0
+//    var setHeight = 0
+//    var setBackground = ""
+//}
 
 
 
